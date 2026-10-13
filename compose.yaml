@@ -1,0 +1,24 @@
+services:
+
+  app:
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: summa-ai-generator
+
+    ports:
+      - "8000:8000"
+
+    env_file:
+      - .env
+
+    environment:
+      APP_ENV: local
+      APP_DEBUG: "true"
+      APP_URL: http://localhost:8000
+
+      COMFYUI_URL: http://host.docker.internal:8188
+      OLLAMA_URL: http://host.docker.internal:11434
+      OLLAMA_MODEL: gemma3:4b
