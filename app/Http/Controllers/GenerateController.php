@@ -158,9 +158,7 @@ class GenerateController extends Controller
             |--------------------------------------------------------------------------
             | IMAGE TO IMAGE
             |--------------------------------------------------------------------------
-            */
-
-            elseif (
+            */ elseif (
                 $selectedWorkflow ===
                 'image_to_image'
             ) {
@@ -169,7 +167,7 @@ class GenerateController extends Controller
 
                     return response()->json([
                         'message' =>
-                            'Image to Image requires a reference image.'
+                        'Image to Image requires a reference image.'
                     ], 422);
                 }
 
@@ -222,7 +220,7 @@ class GenerateController extends Controller
 
                 $extension =
                     $uploadedFile
-                        ->getClientOriginalExtension();
+                    ->getClientOriginalExtension();
 
 
                 $filename =
@@ -243,13 +241,13 @@ class GenerateController extends Controller
                     )
                     ->post(
                         $comfyUrl .
-                        '/upload/image',
+                            '/upload/image',
                         [
                             'type' =>
-                                'input',
+                            'input',
 
                             'overwrite' =>
-                                'true',
+                            'true',
                         ]
                     );
 
@@ -261,7 +259,7 @@ class GenerateController extends Controller
 
                     return response()->json([
                         'message' =>
-                            'Could not upload the image to ComfyUI: ' .
+                        'Could not upload the image to ComfyUI: ' .
                             $uploadResponse->body()
                     ], 500);
                 }
@@ -269,14 +267,14 @@ class GenerateController extends Controller
 
                 $uploadedImageName =
                     $uploadResponse
-                        ->json('name');
+                    ->json('name');
 
 
                 if (!$uploadedImageName) {
 
                     return response()->json([
                         'message' =>
-                            'ComfyUI uploaded the image but did not return a filename.'
+                        'ComfyUI uploaded the image but did not return a filename.'
                     ], 500);
                 }
 
@@ -289,14 +287,11 @@ class GenerateController extends Controller
 
                 $workflow['25:22']['inputs']['image']
                     = $uploadedImageName;
-            }
-
-
-            else {
+            } else {
 
                 return response()->json([
                     'message' =>
-                        'Invalid workflow.'
+                    'Invalid workflow.'
                 ], 422);
             }
 
@@ -316,21 +311,21 @@ class GenerateController extends Controller
 
             $response =
                 Http::timeout(30)
-                    ->post(
-                        $comfyUrl .
+                ->post(
+                    $comfyUrl .
                         '/prompt',
-                        [
-                            'prompt' =>
-                                $workflow
-                        ]
-                    );
+                    [
+                        'prompt' =>
+                        $workflow
+                    ]
+                );
 
 
             if (!$response->successful()) {
 
                 return response()->json([
                     'message' =>
-                        'ComfyUI rejected the workflow: ' .
+                    'ComfyUI rejected the workflow: ' .
                         $response->body()
                 ], 500);
             }
@@ -346,7 +341,7 @@ class GenerateController extends Controller
 
                 return response()->json([
                     'message' =>
-                        'ComfyUI did not return a prompt ID.'
+                    'ComfyUI did not return a prompt ID.'
                 ], 500);
             }
 
@@ -360,30 +355,29 @@ class GenerateController extends Controller
             return response()->json([
 
                 'prompt_id' =>
-                    $promptId,
+                $promptId,
 
                 'status' =>
-                    'queued',
+                'queued',
 
                 'actual_workflow' =>
-                    $selectedWorkflow,
+                $selectedWorkflow,
 
                 'detected_language' =>
-                    $detectedLanguage,
+                $detectedLanguage,
 
                 'positive_prompt' =>
-                    $positivePrompt,
+                $positivePrompt,
 
                 'negative_prompt' =>
-                    $negativePrompt,
+                $negativePrompt,
 
             ], 202);
-
         } catch (\Throwable $e) {
 
             return response()->json([
                 'message' =>
-                    'Something went wrong: ' .
+                'Something went wrong: ' .
                     $e->getMessage()
             ], 500);
         }
@@ -417,21 +411,21 @@ class GenerateController extends Controller
 
             $historyResponse =
                 Http::timeout(10)
-                    ->get(
-                        $comfyUrl .
+                ->get(
+                    $comfyUrl .
                         '/history/' .
                         $promptId
-                    );
+                );
 
 
             if (
                 $historyResponse
-                    ->successful()
+                ->successful()
             ) {
 
                 $history =
                     $historyResponse
-                        ->json();
+                    ->json();
 
 
                 if (
@@ -462,10 +456,10 @@ class GenerateController extends Controller
 
                         return response()->json([
                             'status' =>
-                                'failed',
+                            'failed',
 
                             'message' =>
-                                'ComfyUI failed while generating the result.'
+                            'ComfyUI failed while generating the result.'
                         ]);
                     }
 
@@ -479,7 +473,7 @@ class GenerateController extends Controller
                     $image =
                         $this->findFirstImage(
                             $entry['outputs']
-                            ?? []
+                                ?? []
                         );
 
 
@@ -487,22 +481,22 @@ class GenerateController extends Controller
 
                         $imageResponse =
                             Http::timeout(30)
-                                ->get(
-                                    $comfyUrl .
+                            ->get(
+                                $comfyUrl .
                                     '/view',
-                                    [
-                                        'filename' =>
-                                            $image['filename'],
+                                [
+                                    'filename' =>
+                                    $image['filename'],
 
-                                        'subfolder' =>
-                                            $image['subfolder']
-                                            ?? '',
+                                    'subfolder' =>
+                                    $image['subfolder']
+                                        ?? '',
 
-                                        'type' =>
-                                            $image['type']
-                                            ?? 'temp',
-                                    ]
-                                );
+                                    'type' =>
+                                    $image['type']
+                                        ?? 'temp',
+                                ]
+                            );
 
 
                         if (
@@ -512,19 +506,19 @@ class GenerateController extends Controller
 
                             return response()->json([
                                 'status' =>
-                                    'failed',
+                                'failed',
 
                                 'message' =>
-                                    'The result was generated but could not be downloaded.'
+                                'The result was generated but could not be downloaded.'
                             ]);
                         }
 
 
                         $mime =
                             $imageResponse
-                                ->header(
-                                    'Content-Type'
-                                )
+                            ->header(
+                                'Content-Type'
+                            )
                             ?? 'image/png';
 
 
@@ -540,13 +534,13 @@ class GenerateController extends Controller
 
                         return response()->json([
                             'status' =>
-                                'completed',
+                            'completed',
 
                             'label' =>
-                                'Complete',
+                            'Complete',
 
                             'image_data' =>
-                                $imageData,
+                            $imageData,
                         ]);
                     }
 
@@ -566,10 +560,10 @@ class GenerateController extends Controller
 
                         return response()->json([
                             'status' =>
-                                'failed',
+                            'failed',
 
                             'message' =>
-                                'ComfyUI completed the workflow but no image output was found.'
+                            'ComfyUI completed the workflow but no image output was found.'
                         ]);
                     }
                 }
@@ -584,20 +578,20 @@ class GenerateController extends Controller
 
             $queueResponse =
                 Http::timeout(10)
-                    ->get(
-                        $comfyUrl .
+                ->get(
+                    $comfyUrl .
                         '/queue'
-                    );
+                );
 
 
             if (
                 $queueResponse
-                    ->successful()
+                ->successful()
             ) {
 
                 $queue =
                     $queueResponse
-                        ->json();
+                    ->json();
 
 
                 /*
@@ -607,17 +601,17 @@ class GenerateController extends Controller
                 if (
                     $this->queueContainsPrompt(
                         $queue['queue_running']
-                        ?? [],
+                            ?? [],
                         $promptId
                     )
                 ) {
 
                     return response()->json([
                         'status' =>
-                            'generating',
+                        'generating',
 
                         'label' =>
-                            'Generating image'
+                        'Generating image'
                     ]);
                 }
 
@@ -629,17 +623,17 @@ class GenerateController extends Controller
                 if (
                     $this->queueContainsPrompt(
                         $queue['queue_pending']
-                        ?? [],
+                            ?? [],
                         $promptId
                     )
                 ) {
 
                     return response()->json([
                         'status' =>
-                            'queued',
+                        'queued',
 
                         'label' =>
-                            'Waiting in queue'
+                        'Waiting in queue'
                     ]);
                 }
             }
@@ -653,20 +647,19 @@ class GenerateController extends Controller
 
             return response()->json([
                 'status' =>
-                    'processing',
+                'processing',
 
                 'label' =>
-                    'Preparing result'
+                'Preparing result'
             ]);
-
         } catch (\Throwable $e) {
 
             return response()->json([
                 'status' =>
-                    'connection_error',
+                'connection_error',
 
                 'message' =>
-                    'Could not check ComfyUI status.'
+                'Could not check ComfyUI status.'
             ], 503);
         }
     }
@@ -723,9 +716,7 @@ class GenerateController extends Controller
             if (
                 isset($output['images'])
                 &&
-                !empty(
-                    $output['images']
-                )
+                !empty($output['images'])
             ) {
 
                 return
@@ -751,7 +742,7 @@ class GenerateController extends Controller
         $path =
             storage_path(
                 'app/workflows/' .
-                $filename
+                    $filename
             );
 
 
@@ -759,7 +750,7 @@ class GenerateController extends Controller
 
             throw new \Exception(
                 'Workflow file not found: ' .
-                $filename
+                    $filename
             );
         }
 
@@ -777,7 +768,7 @@ class GenerateController extends Controller
 
             throw new \Exception(
                 'Could not read workflow: ' .
-                $filename
+                    $filename
             );
         }
 
@@ -818,14 +809,14 @@ class GenerateController extends Controller
         $schema = [
 
             'type' =>
-                'object',
+            'object',
 
             'properties' => [
 
                 'workflow' => [
 
                     'type' =>
-                        'string',
+                    'string',
 
                     'enum' => [
                         'text_to_image',
@@ -837,21 +828,21 @@ class GenerateController extends Controller
                 'detected_language' => [
 
                     'type' =>
-                        'string',
+                    'string',
                 ],
 
 
                 'positive_prompt' => [
 
                     'type' =>
-                        'string',
+                    'string',
                 ],
 
 
                 'negative_prompt' => [
 
                     'type' =>
-                        'string',
+                    'string',
                 ],
             ],
 
@@ -869,7 +860,7 @@ class GenerateController extends Controller
 
 
             'additionalProperties' =>
-                false,
+            false,
         ];
 
 
@@ -879,7 +870,7 @@ class GenerateController extends Controller
         |--------------------------------------------------------------------------
         */
 
-$systemPrompt = <<<PROMPT
+        $systemPrompt = <<<PROMPT
 
 You are an AI request parser and workflow router for a local AI generation system.
 
@@ -1091,76 +1082,76 @@ PROMPT;
 
         $response =
             Http::timeout(120)
-                ->post(
-                    $ollamaUrl .
+            ->post(
+                $ollamaUrl .
                     '/api/chat',
-                    [
+                [
 
-                        'model' =>
-                            $model,
+                    'model' =>
+                    $model,
 
 
-                        'messages' => [
+                    'messages' => [
 
-                            [
-                                'role' =>
-                                    'system',
+                        [
+                            'role' =>
+                            'system',
 
-                                'content' =>
-                                    $systemPrompt,
-                            ],
-
-                            [
-                                'role' =>
-                                    'user',
-
-                                'content' =>
-                                    $userMessage,
-                            ],
-
+                            'content' =>
+                            $systemPrompt,
                         ],
 
+                        [
+                            'role' =>
+                            'user',
 
-                        'stream' =>
-                            false,
-
-
-                        'format' =>
-                            $schema,
-
-
-                        'options' => [
-
-                            'temperature' =>
-                                0,
+                            'content' =>
+                            $userMessage,
                         ],
 
+                    ],
 
-                        /*
+
+                    'stream' =>
+                    false,
+
+
+                    'format' =>
+                    $schema,
+
+
+                    'options' => [
+
+                        'temperature' =>
+                        0,
+                    ],
+
+
+                    /*
                         | Unload Ollama model
                         | so ComfyUI can use GPU memory.
                         */
 
-                        'keep_alive' =>
-                            0,
-                    ]
-                );
+                    'keep_alive' =>
+                    0,
+                ]
+            );
 
 
         if (!$response->successful()) {
 
             throw new \Exception(
                 'Could not connect to Ollama: ' .
-                $response->body()
+                    $response->body()
             );
         }
 
 
         $content =
             $response
-                ->json(
-                    'message.content'
-                );
+            ->json(
+                'message.content'
+            );
 
 
         if (!$content) {

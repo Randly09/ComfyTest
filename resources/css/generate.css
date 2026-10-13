@@ -27,7 +27,6 @@
     --shadow-main: 0 10px 35px rgba(0, 0, 0, 0.35);
 }
 
-
 * {
     box-sizing: border-box;
 }
@@ -40,7 +39,11 @@ body {
     margin: 0;
     min-height: 100vh;
     background:
-        radial-gradient(circle at top, rgba(58, 39, 168, 0.18), transparent 30%),
+        radial-gradient(
+            circle at top,
+            rgba(58, 39, 168, 0.18),
+            transparent 30%
+        ),
         linear-gradient(180deg, #120d2d 0%, var(--bg-main) 100%);
     color: var(--text-main);
 
@@ -54,7 +57,6 @@ body {
         sans-serif;
 }
 
-
 /*
 |--------------------------------------------------------------------------
 | Page
@@ -66,7 +68,6 @@ body {
     display: flex;
     flex-direction: column;
 }
-
 
 /*
 |--------------------------------------------------------------------------
@@ -106,7 +107,6 @@ body {
     color: var(--text-muted);
 }
 
-
 /*
 |--------------------------------------------------------------------------
 | Conversation
@@ -123,7 +123,6 @@ body {
 
     padding: 40px 22px 220px;
 }
-
 
 /*
 |--------------------------------------------------------------------------
@@ -148,7 +147,6 @@ body {
     color: var(--text-muted);
     margin: 0;
 }
-
 
 /*
 |--------------------------------------------------------------------------
@@ -204,7 +202,6 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-
 /*
 |--------------------------------------------------------------------------
 | Assistant
@@ -229,7 +226,6 @@ body {
     font-size: 14px;
 }
 
-
 /*
 |--------------------------------------------------------------------------
 | Typing dots
@@ -253,11 +249,7 @@ body {
 
     background: var(--brand-primary-light);
 
-    animation:
-        typingDot
-        1.25s
-        infinite
-        ease-in-out;
+    animation: typingDot 1.25s infinite ease-in-out;
 }
 
 .typing-dot:nth-child(2) {
@@ -281,7 +273,6 @@ body {
         transform: translateY(-4px);
     }
 }
-
 
 /*
 |--------------------------------------------------------------------------
@@ -310,7 +301,6 @@ body {
     box-shadow: var(--shadow-main);
 }
 
-
 /*
 |--------------------------------------------------------------------------
 | AI interpretation
@@ -326,7 +316,11 @@ body {
 
     overflow: hidden;
 
-    background: linear-gradient(180deg, var(--bg-panel-2) 0%, var(--bg-panel) 100%);
+    background: linear-gradient(
+        180deg,
+        var(--bg-panel-2) 0%,
+        var(--bg-panel) 100%
+    );
 }
 
 .debug-box summary {
@@ -357,7 +351,6 @@ body {
     color: var(--text-main);
 }
 
-
 /*
 |--------------------------------------------------------------------------
 | Errors
@@ -378,7 +371,6 @@ body {
     font-size: 14px;
 }
 
-
 /*
 |--------------------------------------------------------------------------
 | Composer
@@ -396,12 +388,11 @@ body {
 
     padding: 35px 18px 26px;
 
-    background:
-        linear-gradient(
-            transparent,
-            rgba(15, 11, 38, 0.96) 28%,
-            rgba(15, 11, 38, 1) 100%
-        );
+    background: linear-gradient(
+        transparent,
+        rgba(15, 11, 38, 0.96) 28%,
+        rgba(15, 11, 38, 1) 100%
+    );
 }
 
 .composer {
@@ -412,7 +403,11 @@ body {
 
     padding: 11px;
 
-    background: linear-gradient(180deg, var(--bg-panel-2) 0%, var(--bg-panel) 100%);
+    background: linear-gradient(
+        180deg,
+        var(--bg-panel-2) 0%,
+        var(--bg-panel) 100%
+    );
 
     border: 1px solid var(--border-main);
 
@@ -420,7 +415,6 @@ body {
 
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
-
 
 /*
 |--------------------------------------------------------------------------
@@ -457,7 +451,6 @@ body {
 .prompt-textarea::placeholder {
     color: var(--text-faint);
 }
-
 
 /*
 |--------------------------------------------------------------------------
@@ -502,7 +495,6 @@ body {
 .negative-area textarea::placeholder {
     color: var(--text-faint);
 }
-
 
 /*
 |--------------------------------------------------------------------------
@@ -588,7 +580,6 @@ body {
 .remove-file:hover {
     color: #ffffff;
 }
-
 
 /*
 |--------------------------------------------------------------------------
@@ -677,7 +668,11 @@ body {
 
     border-radius: 50%;
 
-    background: linear-gradient(180deg, var(--brand-primary-hover) 0%, var(--brand-primary) 100%);
+    background: linear-gradient(
+        180deg,
+        var(--brand-primary-hover) 0%,
+        var(--brand-primary) 100%
+    );
 
     color: #ffffff;
 
@@ -703,7 +698,6 @@ body {
     filter: brightness(1.07);
     box-shadow: 0 10px 26px rgba(32, 18, 110, 0.45);
 }
-
 
 /*
 |--------------------------------------------------------------------------
@@ -739,7 +733,11 @@ body {
 
     border-radius: 22px;
 
-    background: linear-gradient(180deg, rgba(32, 18, 110, 0.24) 0%, rgba(22, 17, 54, 0.96) 100%);
+    background: linear-gradient(
+        180deg,
+        rgba(32, 18, 110, 0.24) 0%,
+        rgba(22, 17, 54, 0.96) 100%
+    );
 
     text-align: center;
 
@@ -759,7 +757,6 @@ body {
 
     font-size: 13px;
 }
-
 
 /*
 |--------------------------------------------------------------------------

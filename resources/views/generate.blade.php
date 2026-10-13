@@ -16,11 +16,9 @@
     <title>Summa AI Generator</title>
 </head>
 
-
 <body
     data-status-base-url="{{ url('/generate/status') }}"
 >
-
 
 {{-- DRAG OVERLAY --}}
 
@@ -28,40 +26,27 @@
     class="drop-overlay"
     id="dropOverlay"
 >
-
     <div class="drop-box">
-
         Add image
-
         <small>
             Drop your image here
         </small>
-
     </div>
-
 </div>
 
-
-
 <div class="page">
-
 
     {{-- HEADER --}}
 
     <header class="topbar">
-
         <div class="brand">
             Summa AI Generator
         </div>
 
-
         <div class="system-name">
             ComfyUI + Ollama
         </div>
-
     </header>
-
-
 
     {{-- CHAT --}}
 
@@ -74,7 +59,6 @@
             class="welcome"
             id="welcome"
         >
-
             <h1>
                 What would you like to create?
             </h1>
@@ -82,12 +66,8 @@
             <p>
                 Describe your idea in any language.
             </p>
-
         </div>
-
     </main>
-
-
 
     {{-- COMPOSER --}}
 
@@ -103,7 +83,6 @@
 
             @csrf
 
-
             {{-- FILE PREVIEW --}}
 
             <div
@@ -112,13 +91,11 @@
             >
 
                 <div class="file-preview-inner">
-
                     <img
                         id="fileThumbnail"
                         class="file-thumbnail"
                         alt="Reference image"
                     >
-
 
                     <div class="file-info">
 
@@ -127,13 +104,11 @@
                             class="file-name"
                         ></div>
 
-
                         <div class="file-label">
                             Reference image
                         </div>
 
                     </div>
-
 
                     <button
                         type="button"
@@ -142,12 +117,8 @@
                     >
                         ×
                     </button>
-
                 </div>
-
             </div>
-
-
 
             {{-- PROMPT --}}
 
@@ -160,22 +131,18 @@
                 required
             ></textarea>
 
-
-
             {{-- NEGATIVE PROMPT --}}
 
             <div
                 id="negativePromptContainer"
                 class="negative-area"
             >
-
                 <textarea
                     id="negative_prompt"
                     name="negative_prompt"
                     rows="2"
                     placeholder="Things you do not want..."
                 ></textarea>
-
             </div>
 
 
@@ -183,9 +150,7 @@
             {{-- CONTROLS --}}
 
             <div class="composer-bottom">
-
                 <div class="composer-left">
-
 
                     <button
                         type="button"
@@ -196,7 +161,6 @@
                         +
                     </button>
 
-
                     <input
                         type="file"
                         name="image"
@@ -204,31 +168,22 @@
                         accept="image/png,image/jpeg,image/webp"
                         hidden
                     >
-
-
                     <select
                         name="workflow"
                         id="workflow"
                         class="workflow-select"
                     >
-
                         <option value="auto">
                             Auto
                         </option>
-
                         <option value="text_to_image">
                             Text to Image
                         </option>
-
                         <option value="image_to_image">
                             Image to Image
                         </option>
-
                     </select>
-
                 </div>
-
-
                 <button
                     type="submit"
                     class="send-button"
@@ -236,14 +191,9 @@
                 >
                     ↑
                 </button>
-
             </div>
-
         </form>
-
     </div>
-
 </div>
 </body>
-
 </html>
