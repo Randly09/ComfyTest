@@ -15,10 +15,56 @@ services:
       - .env
 
     environment:
+
       APP_ENV: local
+
       APP_DEBUG: "true"
+
       APP_URL: http://localhost:8000
 
+      DB_CONNECTION: sqlite
+
+      DB_DATABASE: /var/www/html/database/database.sqlite
+
       COMFYUI_URL: http://host.docker.internal:8188
+
       OLLAMA_URL: http://host.docker.internal:11434
+
       OLLAMA_MODEL: gemma3:4b
+
+    volumes:
+
+      - ./database:/var/www/html/database
+
+      - ./storage/app/public:/var/www/html/storage/app/public
+
+
+  scheduler:
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: summa-ai-scheduler
+
+    command:
+      php artisan schedule:work
+
+    env_file:
+      - .env
+
+    environment:
+
+      APP_ENV: local
+
+      DB_CONNECTION: sqlite
+
+      DB_DATABASE: /var/www/html/database/database.sqlite
+
+    volumes:
+
+      - ./database:/var/www/html/database
+
+      - ./storage/app/public:/var/www/html/storage/app/public
+
+    restart: unless-stopped

@@ -699,6 +699,207 @@ body {
     box-shadow: 0 10px 26px rgba(32, 18, 110, 0.45);
 }
 
+
+/*
+|--------------------------------------------------------------------------
+| App shell / sidebar
+|--------------------------------------------------------------------------
+*/
+
+.app-shell {
+    min-height: 100vh;
+}
+
+
+.sidebar {
+    position: fixed;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+
+    width: 260px;
+
+    background: #150b50;
+
+    border-right:
+        1px
+        solid
+        rgba(255, 255, 255, 0.08);
+
+    padding: 18px 12px;
+
+    z-index: 60;
+
+    overflow-y: auto;
+}
+
+
+.sidebar-header {
+    padding: 4px 6px 18px;
+}
+
+
+.sidebar-title {
+    color: #ffffff;
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    margin-bottom: 15px;
+}
+
+
+.new-chat-button {
+    width: 100%;
+
+    padding: 11px 14px;
+
+    background: #20126e;
+
+    color: white;
+
+    border:
+        1px
+        solid
+        rgba(255, 255, 255, 0.14);
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    text-align: left;
+}
+
+
+.new-chat-button:hover {
+    background: #2b1b87;
+}
+
+
+.chat-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.chat-item {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+    padding: 11px 12px;
+
+    border-radius: 11px;
+
+    color: #dad5f7;
+
+    text-decoration: none;
+
+    transition: background 0.15s ease;
+}
+
+
+.chat-item:hover {
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+}
+
+
+.chat-item.active {
+    background: #20126e;
+
+    color: white;
+}
+
+
+.chat-title {
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    font-size: 13px;
+}
+
+
+.chat-expiry {
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.52
+        );
+
+    font-size: 10px;
+}
+
+
+.main-app {
+    margin-left: 260px;
+
+    width:
+        calc(
+            100% - 260px
+        );
+
+    min-height: 100vh;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Composer must account for sidebar
+|--------------------------------------------------------------------------
+*/
+
+.composer-wrapper {
+    left: 260px;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Mobile
+|--------------------------------------------------------------------------
+*/
+
+@media (
+    max-width: 800px
+) {
+
+    .sidebar {
+        display: none;
+    }
+
+
+    .main-app {
+        margin-left: 0;
+
+        width: 100%;
+    }
+
+
+    .composer-wrapper {
+        left: 0;
+    }
+}
+
 /*
 |--------------------------------------------------------------------------
 | Drag and drop
@@ -782,4 +983,577 @@ body {
     .system-name {
         display: none;
     }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Sidebar layout
+|--------------------------------------------------------------------------
+*/
+
+.app-shell {
+    min-height: 100vh;
+}
+
+
+.sidebar {
+    position: fixed;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+
+    width: 260px;
+
+    padding: 18px 12px;
+
+    background: #140b4d;
+
+    border-right:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    z-index: 60;
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow-y: auto;
+}
+
+
+.sidebar-header {
+    padding: 4px 6px 18px;
+}
+
+
+.sidebar-title {
+    color: #ffffff;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    margin-bottom: 16px;
+}
+
+
+.new-chat-button {
+    width: 100%;
+
+    padding: 11px 14px;
+
+    background: #20126e;
+
+    color: #ffffff;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.15);
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    text-align: left;
+
+    transition:
+        background 0.2s ease;
+}
+
+
+.new-chat-button:hover {
+    background: #2b1b87;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Chat history
+|--------------------------------------------------------------------------
+*/
+
+.chat-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    flex: 1;
+}
+
+
+.chat-item {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+    padding: 11px 12px;
+
+    border-radius: 11px;
+
+    color: #dcd7f7;
+
+    text-decoration: none;
+
+    transition:
+        background 0.15s ease;
+}
+
+
+.chat-item:hover {
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+}
+
+
+.chat-item.active {
+    background: #20126e;
+
+    color: #ffffff;
+}
+
+
+.chat-title {
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    font-size: 13px;
+}
+
+
+.chat-expiry {
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.5
+        );
+
+    font-size: 10px;
+}
+
+
+.sidebar-retention {
+    margin-top: 40px;
+
+    padding: 12px;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.45
+        );
+
+    font-size: 10px;
+
+    line-height: 1.4;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Main app with sidebar
+|--------------------------------------------------------------------------
+*/
+
+.main-app {
+    margin-left: 260px;
+
+    width:
+        calc(
+            100% - 260px
+        );
+
+    min-height: 100vh;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Composer position with sidebar
+|--------------------------------------------------------------------------
+*/
+
+.composer-wrapper {
+    left: 260px;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Mobile
+|--------------------------------------------------------------------------
+*/
+
+@media (max-width: 800px) {
+
+    .sidebar {
+        display: none;
+    }
+
+
+    .main-app {
+        margin-left: 0;
+
+        width: 100%;
+    }
+
+
+    .composer-wrapper {
+        left: 0;
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Final chat message + generated media fixes
+|--------------------------------------------------------------------------
+|
+| These rules intentionally appear at the end of the stylesheet so they
+| override older message/sidebar rules without changing the rest of the UI.
+|
+*/
+
+.user-message-row {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+
+    width: 100%;
+
+    margin-bottom: 32px;
+}
+
+.user-message {
+    /*
+    | Keep the bubble only as wide as the message needs.
+    */
+    display: inline-block !important;
+
+    width: fit-content !important;
+    max-width: min(72%, 680px);
+    min-width: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+
+    margin-left: auto;
+
+    padding: 12px 16px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #2b188e 0%,
+            var(--brand-primary) 100%
+        );
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    border-radius:
+        20px
+        20px
+        5px
+        20px;
+
+    color: #ffffff;
+
+    line-height: 1.5;
+
+    text-align: left !important;
+
+    overflow: hidden;
+
+    box-shadow:
+        0
+        8px
+        24px
+        rgba(32, 18, 110, 0.35);
+}
+
+.user-message-text {
+    display: block;
+
+    width: auto;
+
+    margin: 0;
+    padding: 0;
+
+    text-align: left;
+
+    white-space: pre-wrap;
+
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+.user-reference-image {
+    display: block;
+
+    width: 220px;
+    max-width: 100%;
+    max-height: 220px;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+
+    margin-bottom: 10px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+}
+
+.generated-title {
+    color:
+        rgba(255, 255, 255, 0.7);
+
+    font-size: 13px;
+
+    margin-bottom: 10px;
+}
+
+.generated-image {
+    display: block;
+
+    width: auto;
+    max-width: 100%;
+    max-height: 720px;
+
+    object-fit: contain;
+
+    border-radius: 16px;
+
+    border:
+        1px solid
+        var(--border-soft);
+
+    box-shadow:
+        var(--shadow-main);
+}
+
+@media (max-width: 650px) {
+    .user-message {
+        max-width: 90%;
+    }
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Final chat sizing + quality control overrides
+|--------------------------------------------------------------------------
+|
+| These rules intentionally live at the very bottom so they override older
+| versions of the message/sidebar styling without removing the rest of the UI.
+|
+*/
+
+.user-message-row {
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: flex-start !important;
+
+    width: 100% !important;
+
+    margin-bottom: 32px;
+}
+
+.user-message-row > .user-message {
+    display: inline-flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    align-self: flex-end !important;
+
+    flex: 0 1 auto !important;
+
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: min(70%, 600px) !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+
+    margin: 0 0 0 auto !important;
+
+    padding: 12px 16px !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #2b188e 0%,
+            #20126e 100%
+        );
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    border-radius:
+        20px
+        20px
+        5px
+        20px;
+
+    color: #ffffff;
+
+    line-height: 1.5;
+    text-align: left !important;
+
+    overflow: hidden;
+
+    box-shadow:
+        0
+        8px
+        24px
+        rgba(32, 18, 110, 0.35);
+}
+
+.user-message-text {
+    display: block;
+
+    width: auto !important;
+    max-width: 100%;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    text-align: left !important;
+
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+.user-message:has(.user-reference-image) {
+    width: auto !important;
+    max-width: 360px !important;
+}
+
+.user-reference-image {
+    display: block;
+
+    width: auto !important;
+    max-width: 320px !important;
+
+    height: auto !important;
+    max-height: 320px;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+
+    margin: 0 0 10px 0;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+}
+
+.assistant-message {
+    width: 100%;
+}
+
+.generated-title {
+    color:
+        rgba(255, 255, 255, 0.7);
+
+    font-size: 13px;
+
+    margin-bottom: 10px;
+}
+
+.generated-image {
+    display: block;
+
+    width: auto !important;
+    height: auto !important;
+
+    max-width: 100% !important;
+    max-height: 720px;
+
+    object-fit: contain;
+
+    border-radius: 16px;
+
+    border:
+        1px solid
+        var(--border-soft);
+
+    box-shadow:
+        var(--shadow-main);
+}
+
+.quality-warning {
+    width: fit-content;
+
+    margin-top: 12px;
+
+    padding: 8px 11px;
+
+    border:
+        1px solid
+        rgba(255, 193, 7, 0.28);
+
+    border-radius: 10px;
+
+    background:
+        rgba(255, 193, 7, 0.08);
+
+    color: #f3d98b;
+
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+@media (max-width: 650px) {
+    .user-message-row > .user-message {
+        max-width: 90% !important;
+    }
+
+    .user-message:has(.user-reference-image) {
+        max-width: 90% !important;
+    }
+
+    .user-reference-image {
+        max-width: 100% !important;
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Grounded quality-control debug state
+|--------------------------------------------------------------------------
+*/
+
+.debug-hard-failure {
+    color: #ffb8c8;
+}
+
+.debug-hard-failure strong {
+    color: #ffd8e2;
 }
