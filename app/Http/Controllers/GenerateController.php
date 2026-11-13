@@ -433,7 +433,9 @@ class GenerateController extends Controller
             404
         );
 
-        return Storage::disk('public')->response($message->media_path);
+        return response()->file(
+            Storage::disk('public')->path($message->media_path)
+        );
     }
 
     private function inspectCandidateFacts(Message $message)
