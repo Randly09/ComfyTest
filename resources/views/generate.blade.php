@@ -119,6 +119,23 @@
                 id="conversation"
             >
 
+                @if($messages->isEmpty())
+
+                    <div
+                        class="welcome"
+                        id="welcome"
+                    >
+                    </div>
+
+                @else
+
+                    <div
+                        class="welcome"
+                        id="welcome"
+                        style="display: none;"
+                    ></div>
+
+                @endif
 
 
                 {{-- SAVED CHAT MESSAGES --}}
@@ -447,7 +464,7 @@
                         name="prompt"
                         class="prompt-textarea"
                         rows="1"
-                        placeholder="Send a request..."
+                        placeholder="Send a request"
                         required
                     ></textarea>
 
