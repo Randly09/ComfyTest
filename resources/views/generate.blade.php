@@ -14,7 +14,7 @@
         'resources/js/generate.js'
     ])
 
-    <title>Summa AI Generator</title>
+    <title>Summa AI</title>
 </head>
 
 <body
@@ -102,7 +102,7 @@
             <header class="topbar">
 
                 <div class="brand">
-                    Summa AI Generator
+                    Summa AI
                 </div>
 
                 <div class="system-name">
@@ -119,30 +119,6 @@
                 id="conversation"
             >
 
-                @if($messages->isEmpty())
-
-                    <div
-                        class="welcome"
-                        id="welcome"
-                    >
-                        <h1>
-                            What would you like to create?
-                        </h1>
-
-                        <p>
-                            Describe your idea in any language.
-                        </p>
-                    </div>
-
-                @else
-
-                    <div
-                        class="welcome"
-                        id="welcome"
-                        style="display: none;"
-                    ></div>
-
-                @endif
 
 
                 {{-- SAVED CHAT MESSAGES --}}
@@ -471,7 +447,7 @@
                         name="prompt"
                         class="prompt-textarea"
                         rows="1"
-                        placeholder="Message AI Generator..."
+                        placeholder="Send a request..."
                         required
                     ></textarea>
 
