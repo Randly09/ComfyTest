@@ -36,7 +36,6 @@
         </div>
     </div>
 
-
     <div class="app-shell">
 
         {{-- SIDEBAR --}}
@@ -62,12 +61,9 @@
                         + New chat
                     </button>
                 </form>
-
             </div>
 
-
             {{-- CHAT HISTORY --}}
-
             <div class="chat-list">
 
                 @foreach($chats as $chat)
@@ -555,7 +551,5 @@
         </div>
 
     </div>
-
 </body>
-
 </html>
